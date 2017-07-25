@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26711.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExpress.Core", "SpecExpress.Core\SpecExpress.Core.csproj", "{EFCEB164-6238-4B35-AF68-C438E7A0AB4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExpres.Core", "SpecExpres.Core\SpecExpres.Core.csproj", "{F64A3CA4-02D9-493F-83E6-7697CE7483EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EFCEB164-6238-4B35-AF68-C438E7A0AB4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFCEB164-6238-4B35-AF68-C438E7A0AB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFCEB164-6238-4B35-AF68-C438E7A0AB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFCEB164-6238-4B35-AF68-C438E7A0AB4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F64A3CA4-02D9-493F-83E6-7697CE7483EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F64A3CA4-02D9-493F-83E6-7697CE7483EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F64A3CA4-02D9-493F-83E6-7697CE7483EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F64A3CA4-02D9-493F-83E6-7697CE7483EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

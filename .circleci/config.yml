@@ -1,6 +1,42 @@
 version: 2
 jobs:
   build:
+    branches:
+      only:
+        - /alpha//.*/
+    working_directory: /temp
+    docker:
+      - image: microsoft/dotnet:2.0-sdk
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    steps:
+      - checkout
+      - run: dotnet restore
+      - run: dotnet build
+      - run: dotnet pack
+      - run: dotnet nuget push -k ${NUGET_API_KEY} --version-suffix alpha
+  build:
+    branches:
+      only:
+        - /release//.*/
+    working_directory: /temp
+    docker:
+      - image: microsoft/dotnet:2.0-sdk
+    environment:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    steps:
+      - checkout
+      - run: dotnet restore
+      - run: dotnet build
+      - run: dotnet pack
+      - run: dotnet nuget push -k ${NUGET_API_KEY} --version-suffix
+  build:
+    branches:
+      ignore:
+        - /alpha//.*/
+        - /release//.*/
     working_directory: /temp
     docker:
       - image: microsoft/dotnet:2.0-sdk

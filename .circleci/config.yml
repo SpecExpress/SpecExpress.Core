@@ -31,7 +31,7 @@ jobs:
       - run: dotnet restore
       - run: dotnet build
       - run: dotnet pack
-      - run: dotnet nuget push -k ${NUGET_API_KEY} --version-suffix
+      - run: dotnet nuget push -k ${NUGET_API_KEY}
   build:
     branches:
       ignore:

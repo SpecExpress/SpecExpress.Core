@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: dotnet build 
-    deploy:
+      - deploy:
         command: |
           echo "Deploying!"
           if [["$CIRCLE_BRANCH" =~ "/alpha\/.*"]] then

@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: dotnet build 
-      - deploy: |
+      - run: |
           echo "Deploying!"
           if [["$CIRCLE_BRANCH" =~ "/alpha\/.*"]] then
             dotnet pack --version-suffix alpha --output ./package

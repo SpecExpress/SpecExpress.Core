@@ -14,13 +14,17 @@ jobs:
       - checkout
       - run: dotnet build 
       - run: |
-          echo "Deploying!"
-          if [["$CIRCLE_BRANCH" == alpha/* ]]; then
+          echo "Deploying $CIRCLE_BRANCH"
+          export IS_ALPHA=[["$CIRCLE_BRANCH" == alpha/* ]]
+          export IS_RELEASE=[["$CIRCLE_BRANCH" == release/* ]]
+          echo $IS_ALPHA
+          echo $IS_RELEASE
+          if $IS_ALPHA; then
           dotnet pack --version-suffix alpha --output ./package
           export PACKAGE_FILE=$(ls ./package/*.nupkg)
           dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
           fi
-          if [["$CIRCLE_BRANCH" =~ release/* ]]; then
+          if $IS_RELEASE; then
           dotnet pack --version-suffix alpha --output ./package
           export PACKAGE_FILE=$(ls ./package/*.nupkg)
           dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY

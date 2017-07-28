@@ -17,11 +17,11 @@ jobs:
           echo "Deploying!"
           if [[ "$CIRCLE_BRANCH" == alpha/* ]]; then
           dotnet pack --version-suffix alpha --output ./package
-          export PACKAGE_FILE=$(ls ./SpecExpress.core/package/*.nupkg)
+          export PACKAGE_FILE=$(ls /temp/SpecExpress.core/package/*.nupkg)
           dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
           fi
           if [[ "$CIRCLE_BRANCH" =~ /release\/.* ]]; then
           dotnet pack --version-suffix alpha --output ./package
-          export PACKAGE_FILE=$(ls ./SpecExpress.core/package/*.nupkg)
+          export PACKAGE_FILE=$(ls /temp/SpecExpress.core/package/*.nupkg)
           dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
           fi

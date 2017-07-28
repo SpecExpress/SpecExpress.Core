@@ -3,7 +3,7 @@ jobs:
   build:
     branches:
       only:
-        - /alpha//.*/
+        - /alpha\/.*/
     working_directory: /temp
     docker:
       - image: microsoft/dotnet:2.0-sdk
@@ -20,7 +20,7 @@ jobs:
   build:
     branches:
       only:
-        - /release//.*/
+        - /release\/.*/
     working_directory: /temp
     docker:
       - image: microsoft/dotnet:2.0-sdk
@@ -37,8 +37,8 @@ jobs:
   build:
     branches:
       ignore:
-        - /alpha//.*/
-        - /release//.*/
+        - /alpha\/.*/
+        - /release\/.*/
     working_directory: /temp
     docker:
       - image: microsoft/dotnet:2.0-sdk

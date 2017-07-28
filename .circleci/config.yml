@@ -15,12 +15,12 @@ jobs:
       - run: dotnet build 
       - run: |
           echo "Deploying!"
-          if [["$CIRCLE_BRANCH" =~ "/alpha\/.*"]]; then
+          if [["$CIRCLE_BRANCH" == alpha/* ]]; then
           dotnet pack --version-suffix alpha --output ./package
           export PACKAGE_FILE=$(ls ./package/*.nupkg)
           dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
           fi
-          if [["$CIRCLE_BRANCH" =~ "/release\/.*"]]; then
+          if [["$CIRCLE_BRANCH" =~ release/* ]]; then
           dotnet pack --version-suffix alpha --output ./package
           export PACKAGE_FILE=$(ls ./package/*.nupkg)
           dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY

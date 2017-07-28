@@ -15,39 +15,13 @@ jobs:
       - run: dotnet build 
     deploy:
         command: |
-          dotnet pack --version-suffix alpha --output ./package
-          export PACKAGE_FILE=$(ls ./package/*.nupkg)
-          dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
-  releaseBuild:
-    branches:
-      only:
-        - /release\/.*/
-    working_directory: /temp
-    docker:
-      - image: microsoft/dotnet:2.0-sdk
-    environment:
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
-    steps:
-      - checkout
-      - run: dotnet build
-      - run: 
-    deploy: |
-      dotnet pack --configuration release --output ./package
-      export PACKAGE_FILE=$(ls ./package/*.nupkg)
-      run: dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
-        
-  normalBuild:
-    branches:
-      ignore:
-        - /alpha\/.*/
-        - /release\/.*/
-    working_directory: /temp
-    docker:
-      - image: microsoft/dotnet:2.0-sdk
-    environment:
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
-    steps:
-      - checkout
-      - run: dotnet build
+          if [[$CIRCLE_BRANCH =~ "/alpha\/.*"]] then
+            dotnet pack --version-suffix alpha --output ./package
+            export PACKAGE_FILE=$(ls ./package/*.nupkg)
+            dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
+          fi
+          if [[$CIRCLE_BRANCH =~ "/release\/.*"]] then
+            dotnet pack --version-suffix alpha --output ./package
+            export PACKAGE_FILE=$(ls ./package/*.nupkg)
+            dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
+          fi

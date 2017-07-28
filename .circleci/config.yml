@@ -18,6 +18,7 @@ jobs:
           if [[ "$CIRCLE_BRANCH" == alpha/* ]]; then
           dotnet pack --version-suffix alpha --output ./package
           export PACKAGE_FILE=$(ls /temp/SpecExpress.Core/package/*.nupkg)
+          echo $PACKAGE_FILE
           dotnet nuget push $PACKAGEFILE -s $NUGET_URL -k $NUGET_API_KEY
           fi
           if [[ "$CIRCLE_BRANCH" =~ /release\/.* ]]; then

@@ -1,9 +1,6 @@
 version: 2
 jobs:
   build:
-    branches:
-      only:
-        - /alpha\/.*/
     working_directory: /temp
     docker:
       - image: microsoft/dotnet:2.0-sdk
@@ -18,10 +15,10 @@ jobs:
           if [[ "$CIRCLE_BRANCH" == alpha/* ]]; then
           dotnet pack --version-suffix alpha --output ./package
           export PACKAGE_FILE=$(ls /temp/SpecExpress.Core/package/*.nupkg)
-          dotnet nuget push $PACKAGE_FILE -s $NUGET_URL -k $NUGET_API_KEY
+          dotnet nuget push $PACKAGE_FILE -s $NUGET_URL?replace=true -k $NUGET_API_KEY
           fi
           if [[ "$CIRCLE_BRANCH" =~ /release\/.* ]]; then
           dotnet pack --version-suffix alpha --output ./package
           export PACKAGE_FILE=$(ls /temp/SpecExpress.Core/package/*.nupkg)
-          dotnet nuget push $PACKAGE_FILE -s $NUGET_URL -k $NUGET_API_KEY
+          dotnet nuget push $PACKAGE_FILE -s $NUGET_URL?replace=true -k $NUGET_API_KEY
           fi

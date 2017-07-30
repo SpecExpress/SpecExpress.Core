@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       # Substitute build number for patch portion of version in project file
-      - run: sed 's/<VersionPrefix>\d*\.\d*\.\d*<\/VersionPrefix>/<VersionPrefix>\d*\.\d*\.'"$CIRCLE_BUILD_NUM"'<\/VersionPrefix>' ./SpecExpress.Core/SpecExpress.Core.csproj
+      - run: sed "s/<VersionPrefix>\d*\.\d*\.\d*<\/VersionPrefix>/<VersionPrefix>\d*\.\d*\.$CIRCLE_BUILD_NUM<\/VersionPrefix>/" ./SpecExpress.Core/SpecExpress.Core.csproj
       - run: dotnet build 
       - run: |
           echo "Deploying!"

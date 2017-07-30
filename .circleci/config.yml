@@ -10,10 +10,16 @@ jobs:
     steps:
       - checkout
       # Substitute build number for patch portion of version in project file
-      - run: |
-          sed -i "s/\(<VersionPrefix>[0-9]*\.[0-9]*\.\)\([0-9]*\)/\1$CIRCLE_BUILD_NUM/" ./SpecExpress.Core/SpecExpress.Core.csproj
-      - run: dotnet build 
-      - run: |
+      - run:
+          name: Update Version Number
+          command: |
+            sed -i "s/\(<VersionPrefix>[0-9]*\.[0-9]*\.\)\([0-9]*\)/\1$CIRCLE_BUILD_NUM/" ./SpecExpress.Core/SpecExpress.Core.csproj
+      - run: 
+          name: Build
+          command: dotnet build 
+      - run:
+          name: Deploy to Nuget (if alpha or release)
+          command: |
           echo "Deploying!"
           if [[ "$CIRCLE_BRANCH" == alpha/* ]]; then
           dotnet pack --version-suffix alpha --output ./package

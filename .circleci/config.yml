@@ -20,14 +20,14 @@ jobs:
       - run:
           name: Deploy to Nuget (if alpha or release)
           command: |
-          echo "Deploying!"
-          if [[ "$CIRCLE_BRANCH" == alpha/* ]]; then
-          dotnet pack --version-suffix alpha --output ./package
-          export PACKAGE_FILE=$(ls /temp/SpecExpress.Core/package/*.nupkg)
-          dotnet nuget push $PACKAGE_FILE -s $NUGET_URL -k $NUGET_API_KEY
-          fi
-          if [[ "$CIRCLE_BRANCH" == release/* ]]; then
-          dotnet pack -c release --output ./package
-          export PACKAGE_FILE=$(ls /temp/SpecExpress.Core/package/*.nupkg)
-          dotnet nuget push $PACKAGE_FILE -s $NUGET_URL -k $NUGET_API_KEY
-          fi
+              echo "Deploying!"
+              if [[ "$CIRCLE_BRANCH" == alpha/* ]]; then
+              dotnet pack --version-suffix alpha --output ./package
+              export PACKAGE_FILE=$(ls /temp/SpecExpress.Core/package/*.nupkg)
+              dotnet nuget push $PACKAGE_FILE -s $NUGET_URL -k $NUGET_API_KEY
+              fi
+              if [[ "$CIRCLE_BRANCH" == release/* ]]; then
+              dotnet pack -c release --output ./package
+              export PACKAGE_FILE=$(ls /temp/SpecExpress.Core/package/*.nupkg)
+              dotnet nuget push $PACKAGE_FILE -s $NUGET_URL -k $NUGET_API_KEY
+              fi

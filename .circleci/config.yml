@@ -18,6 +18,9 @@ jobs:
           name: Build
           command: dotnet build 
       - run:
+          name: Test
+          command: dotnet test
+      - run:
           name: Deploy to Nuget (if alpha or release)
           command: |
               echo "Deploying!"

@@ -19,7 +19,7 @@ jobs:
           command: dotnet build 
       - run:
           name: Test
-          command: dotnet test
+          command: dotnet test -v normal ./SpecExpress.Core.UnitTests/SpecExpress.Core.UnitTests.csproj
       - run:
           name: Deploy to Nuget (if alpha or release)
           command: |

@@ -16,4 +16,11 @@
     <VersionPrefix>0.1.0</VersionPrefix>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="BaseTypes\PropertyValidator.cs" />
+    <Compile Remove="BaseTypes\SpecificationBase.cs" />
+    <Compile Remove="Validates.cs" />
+    <Compile Remove="ValidationNotification.cs" />
+  </ItemGroup>
+
 </Project>
